@@ -32,4 +32,4 @@ class Predict(Resource):
 API.add_resource(Predict, '/predict')
 
 if __name__ == '__main__':
-    APP.run(debug=True, port='1080')
+    app.run(host="0.0.0.0", port=port)
