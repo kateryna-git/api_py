@@ -5,8 +5,7 @@ ENV VIRTUAL_ENV=/venv
 RUN virtualenv venv -p python3
 ENV PATH="VIRTUAL_ENV/bin:$PATH"
 
-WORKDIR /app
-ADD . /app
+ADD . .
 
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
