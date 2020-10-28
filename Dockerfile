@@ -1,22 +1,33 @@
 FROM python:3.8
+#FROM alpine:latest
+#RUN pip install virtualenv
+#ENV VIRTUAL_ENV=/venv
+#RUN virtualenv venv -p python3
+#ENV PATH="VIRTUAL_ENV/bin:$PATH"
 
-RUN pip install virtualenv
-ENV VIRTUAL_ENV=/venv
-RUN virtualenv venv -p python3
-ENV PATH="VIRTUAL_ENV/bin:$PATH"
+#ADD . .
+  
 
-ADD . .
 
-# Install dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+RUN apk add --no-cache python3-dev \
+    && pip3 install --upgrade pip
 
-COPY . .
+WORKDIR /app
+COPY . /app
+RUN pip3 --no-cache-dir install -r requirements.txt
+EXPOSE 5000
+
+ENTRYPOINT ["python3"]
+CMD ["app.py"]
 
 # Expose port 
 EXPOSE 5000
 
+
+ENTRYPOINT ["python3"]
+CMD ["app.py"]
 # Run the application:
-CMD ["python", "app.py"]
+#CMD ["python", "app.py"]
 
 
 
